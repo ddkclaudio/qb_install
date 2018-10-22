@@ -4,4 +4,26 @@ sudo apt-get install build-essential cmake git
 # CLONANDO SOURCE
 SOURCE_FOLDER="SOURCE_FOLDER"
 mkdir -p $SOURCE_FOLDER && cd $SOURCE_FOLDER
-git clone https://github.com/objectcomputing/quickfast.git
+SOURCE_FOLDER=$(pwd)
+git clone https://github.com/ddkclaudio/quickfast.git
+
+# COMPILACAO E INSTALACAO
+export QUICKFAST_ROOT=$SOURCE_FOLDER/quickfast
+export MPC_ROOT=$SOURCE_FOLDER/MPC
+export BOOST_ROOT=/usr
+export BOOST_CFG=
+export BOOST_ROOT_LIB=/usr/lib
+export BOOST_STATIC_LIB_PREFIX=
+export BOOST_VERSION=boost
+export BOOST_TEST_CHECKPOINT=
+export XERCES_ROOT=$SOURCE_FOLDER/xerces-c
+export XERCES_LIBPATH=$XERCES_ROOT/src/.libs
+export XERCES_LIBNAME=libxerces-c-3.1
+export XERCES_INCLUDE=$XERCES_ROOT/src
+export PATH=$QUICKFAST_ROOT/bin:$MPC_ROOT:$PATH
+export LD_LIBRARY_PATH=$XERCES_LIBPATH:$QUICKFAST_ROOT/lib:$BOOST_ROOT_LIB:$LD_LIBRARY_PATH
+
+cd $QUICKFAST_ROOT
+$MPC_ROOT/mwc.pl -type make QuickFAST.mwc
+cd $QUICKFAST_ROOT/src
+make
