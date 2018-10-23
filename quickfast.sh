@@ -5,9 +5,9 @@ sudo apt-get install build-essential cmake git
 SOURCE_FOLDER="SOURCE_FOLDER"
 mkdir -p $SOURCE_FOLDER && cd $SOURCE_FOLDER
 SOURCE_FOLDER=$(pwd)
-git clone https://github.com/ddkclaudio/quickfast.git
+# git clone https://github.com/ddkclaudio/quickfast.git
 
-# COMPILACAO E INSTALACAO
+# COMPILACAO
 export QUICKFAST_ROOT=$SOURCE_FOLDER/quickfast
 export MPC_ROOT=$SOURCE_FOLDER/MPC
 export BOOST_ROOT=/usr
@@ -27,3 +27,19 @@ cd $QUICKFAST_ROOT
 $MPC_ROOT/mwc.pl -type make QuickFAST.mwc
 cd $QUICKFAST_ROOT/src
 make
+
+# INSTALACAO
+sudo cp -r $SOURCE_FOLDER/quickfast/src/Application/ /usr/include/
+sudo cp -r $SOURCE_FOLDER/quickfast/src/Messages/ /usr/include/
+sudo cp -r $SOURCE_FOLDER/quickfast/src/Common/ /usr/include/
+sudo cp -r $SOURCE_FOLDER/quickfast/src/Codecs/ /usr/include/
+sudo cp -r $SOURCE_FOLDER/quickfast/src/Communication/ /usr/include/
+sudo cp $SOURCE_FOLDER/quickfast/lib/libQuickFAST.so /usr/lib
+
+
+# sudo cp -r $SOURCE_FOLDER/quickfast/src/Application/ /usr/local/include/
+# sudo cp -r $SOURCE_FOLDER/quickfast/src/Messages/ /usr/local/include/
+# sudo cp -r $SOURCE_FOLDER/quickfast/src/Common/ /usr/local/include/
+# sudo cp -r $SOURCE_FOLDER/quickfast/src/Codecs/ /usr/local/include/
+# sudo cp -r $SOURCE_FOLDER/quickfast/src/Communication/ /usr/local/include/
+# sudo cp $SOURCE_FOLDER/quickfast/lib/libQuickFAST.so /usr/local/lib
